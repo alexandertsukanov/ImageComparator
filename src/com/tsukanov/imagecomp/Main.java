@@ -6,12 +6,20 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class Main {
 
-    private static final int NEXT_SQUARE_AFTER = 60000;
+    private static final int NEXT_SQUARE_AFTER_PIXELS = 40000;
+
+    /**
+     * @param args
+     * First argument is the path to the first image.
+     * Second argument is the path to the second image.
+     * Third argument is the path where to save result image. (Example ./result.jpg)
+     */
 
     public static void main(String[] args) {
-        int minX = 0, minY = 0, maxX = 0, maxY = 0, noDifferenceBetweenPixels = 0;
+        int minX = 0, minY = 0, lastminX = 0, lastminY = 0, maxX = 0, maxY = 0, noSamePixels = 0;
         File imgFile1 = new File(args[0]);
         File imgFile2 = new File(args[1]);
         try {
@@ -40,14 +48,17 @@ public class Main {
                             }
                             maxX = x;
                             maxY = y;
+                        } else {
+                            noSamePixels++;
                         }
-                        else{
-                            noDifferenceBetweenPixels++;
-                        }
-                        if(noDifferenceBetweenPixels == NEXT_SQUARE_AFTER){
-                            g.drawRect(minX, minY, maxX - minX, maxY - minY);
+                        if (noSamePixels == NEXT_SQUARE_AFTER_PIXELS) {
+                            if (minX != lastminX && minY != lastminY) {
+                                g.drawRect(minX, minY, maxX - minX, maxY - minY);
+                            }
                             first = true;
-                            noDifferenceBetweenPixels = 0;
+                            noSamePixels = 0;
+                            lastminX = minX;
+                            lastminY = minY;
                         }
                     }
                 }
@@ -57,7 +68,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
 
