@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public class Main {
 
-    private static final int NEXT_SQUARE_AFTER_PIXELS = 40000;
+    private static final int NEXT_SQUARE_AFTER_PIXELS = 60000;
 
     /**
      * @param args
      * First argument is the path to the first image.
      * Second argument is the path to the second image.
-     * Third argument is the path where to save result image. (Example ./result.jpg)
+     * Third argument is the path where to save result image. (Example ./result.png)
      */
 
     public static void main(String[] args) {
@@ -63,7 +63,7 @@ public class Main {
                     }
                 }
                 g.dispose();
-                ImageIO.write(copyOfImage, "jpg", outputFile);
+                ImageIO.write(copyOfImage, "png", outputFile);
             }
         } catch (IOException e) {
             e.printStackTrace();
