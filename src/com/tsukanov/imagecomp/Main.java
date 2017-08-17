@@ -19,7 +19,7 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        int minX = 0, minY = 0, lastminX = 0, lastminY = 0, maxX = 0, maxY = 0, noSamePixels = 0;
+        int minX = 0, minY = 0, lastMinX = 0, lastMinY = 0, maxX = 0, maxY = 0, noSamePixels = 0;
         File imgFile1 = new File(args[0]);
         File imgFile2 = new File(args[1]);
         try {
@@ -52,13 +52,13 @@ public class Main {
                             noSamePixels++;
                         }
                         if (noSamePixels == NEXT_SQUARE_AFTER_PIXELS) {
-                            if (minX != lastminX && minY != lastminY) {
+                            if (minX != lastMinX && minY != lastMinY) {
                                 g.drawRect(minX, minY, maxX - minX, maxY - minY);
                             }
                             first = true;
                             noSamePixels = 0;
-                            lastminX = minX;
-                            lastminY = minY;
+                            lastMinX = minX;
+                            lastMinY = minY;
                         }
                     }
                 }
