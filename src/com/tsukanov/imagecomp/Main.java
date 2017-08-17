@@ -34,7 +34,7 @@ public class Main {
                 int height = img1.getHeight();
                 BufferedImage copyOfImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
                 Graphics g = copyOfImage.createGraphics();
-                File outputfile = new File(args[2]);
+                File outputFile = new File(args[2]);
                 g.drawImage(img2, 0, 0, null);
                 g.setColor(Color.RED);
                 boolean first = true;
@@ -63,7 +63,7 @@ public class Main {
                     }
                 }
                 g.dispose();
-                ImageIO.write(copyOfImage, "jpg", outputfile);
+                ImageIO.write(copyOfImage, "jpg", outputFile);
             }
         } catch (IOException e) {
             e.printStackTrace();
